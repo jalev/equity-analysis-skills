@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kalamajakapital-edgar-downloader"
+version = "0.1.0"
+description = "Download SEC EDGAR 10-K and 10-Q filings into the repo research tree."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "click==8.3.1",
+  "sec-edgar-downloader==5.1.0",
+]
+
+[project.scripts]
+edgar-filings = "edgar_filings.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+include = ["edgar_filings*"]
+
+[tool.uv.sources]
+sec-edgar-downloader = { git = "https://github.com/jadchaar/sec-edgar-downloader", rev = "185a5548e49fd37afb9871df8aa9485075f21e21" }

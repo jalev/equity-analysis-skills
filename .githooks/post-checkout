@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+
+"$repo_root/scripts/install-codex-skill.sh" >/dev/null 2>&1 || {
+  echo "codex skill installation skipped; run scripts/install-codex-skill.sh manually" >&2
+}

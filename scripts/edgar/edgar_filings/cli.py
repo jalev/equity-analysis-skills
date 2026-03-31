@@ -39,7 +39,15 @@ class FilingRecord:
 
 
 def repo_root() -> Path:
-    return Path(__file__).resolve().parents[3]
+    try:
+        import subprocess
+        result = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            capture_output=True, text=True, check=True,
+        )
+        return Path(result.stdout.strip())
+    except Exception:
+        return Path(__file__).resolve().parents[3]
 
 
 def research_root() -> Path:
